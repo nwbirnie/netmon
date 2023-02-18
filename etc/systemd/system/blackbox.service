@@ -1,0 +1,14 @@
+[Unit]
+Description=Blackbox Exporter
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=netmon
+ExecStart=/usr/local/bin/blackbox_exporter.sh
+
+[Install]
+WantedBy=multi-user.target

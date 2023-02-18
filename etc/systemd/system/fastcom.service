@@ -1,0 +1,14 @@
+[Unit]
+Description=Fast.com Exporter
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=netmon
+ExecStart=/usr/local/bin/fastcom.sh
+
+[Install]
+WantedBy=multi-user.target

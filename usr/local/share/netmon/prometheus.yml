@@ -1,0 +1,31 @@
+global:
+  scrape_interval: 1m
+  evaluation_interval: 1m
+
+scrape_configs:
+  - job_name: 'fast_com'
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - 127.0.0.1:9877
+  - job_name: 'blackbox-icmp'
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    static_configs:
+      - targets:
+        - google.com
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+
+remote_write:
+  - url: https://prometheus-prod-05-gb-south-0.grafana.net/api/prom/push
+    basic_auth:
+      username: INSERT
+      password: INSERT
+
