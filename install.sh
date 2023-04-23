@@ -9,3 +9,6 @@ cp -r usr/* /usr
 cp -r etc/* /etc
 mkdir -p /var/prometheus
 chmod a+w /var/prometheus
+systemctl enable blackbox_exporter.service
+systemctl enable fastcom.service
+systemctl enable prometheus.service
