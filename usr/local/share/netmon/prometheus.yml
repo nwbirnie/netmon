@@ -8,8 +8,8 @@ scrape_configs:
     static_configs:
       - targets:
         - host.docker.internal:9877
-    scrape_timeout: 2m
-    scrape_interval: 10m
+    scrape_timeout: 1s
+    scrape_interval: 1m
   - job_name: 'blackbox-icmp'
     metrics_path: /probe
     params:
