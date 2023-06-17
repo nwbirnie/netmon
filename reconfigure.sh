@@ -15,6 +15,7 @@ cp -r usr/* /usr
 cp -r etc/* /etc
 mkdir -p /var/prometheus/secret
 mkdir -p /var/prometheus/data
+chmod a+w -R /var/prometheus/data
 echo "${grafana_credential}" > /var/prometheus/secret/grafana.credential
 sed "s/INSERT_USER/${grafana_user}/" -i /usr/local/share/netmon/prometheus.yml
 sed "s,INSERT_URL,${grafana_url}," -i /usr/local/share/netmon/prometheus.yml
