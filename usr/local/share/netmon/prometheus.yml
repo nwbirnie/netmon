@@ -34,9 +34,10 @@ scrape_configs:
       module: [dns]
     static_configs:
       - targets:
-        - google.com
-        - one.one.one.one
-        - akamai.com
+        - 127.0.0.1
+        - 8.8.8.8
+        - 1.1.1.1
+        - 9.9.9.9
     scrape_interval: 1m
     scrape_timeout: 1m
     relabel_configs:
