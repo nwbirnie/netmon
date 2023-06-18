@@ -13,11 +13,19 @@ cat <<EOF | sudo bash
 set -euox pipefail
 cp -r usr/* /usr
 cp config/systemd/* /etc/systemd/system
+
+# Scraper configs
+mkdir /etc/netmon
+chmod 755 -R /etc/netmon
+cp config/scrapers/* /etc/netmon
+
+# Prom data 
 mkdir -p /var/prometheus/secret
 mkdir -p /var/prometheus/data
 chown nobody:nogroup -R /var/prometheus
 chmod 755 -R /var/prometheus
 
+# No root for you
 useradd -s /usr/sbin/nologin netmon || true
 usermod -G docker netmon || true
 

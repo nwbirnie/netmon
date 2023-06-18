@@ -3,7 +3,7 @@ docker run \
   --rm \
   --name prometheus \
   -p 9090:9090 \
-  -v /usr/local/share/netmon/prometheus.yml:/etc/prometheus/prometheus.yml \
+  -v /etc/netmon/prometheus.yml:/etc/prometheus/prometheus.yml \
   -v /var/prometheus/data:/prometheus \
   -v /var/prometheus/secret/grafana.credential:/grafana.credential \
   -v /etc/ssl/certs:/etc/ssl/certs \
