@@ -3,13 +3,13 @@ global:
   evaluation_interval: 1m
 
 scrape_configs:
-  - job_name: 'fast_com'
-    metrics_path: /metrics
-    static_configs:
-      - targets:
-        - host.docker.internal:9877
-    scrape_timeout: 1s
-    scrape_interval: 1m
+#  - job_name: 'fast_com'
+#    metrics_path: /metrics
+#    static_configs:
+#      - targets:
+#        - host.docker.internal:9877
+#    scrape_timeout: 1s
+#    scrape_interval: 1m
   - job_name: 'blackbox-icmp'
     metrics_path: /probe
     params:
@@ -17,6 +17,11 @@ scrape_configs:
     static_configs:
       - targets:
         - google.com
+        - one.one.one.one
+        - akamai.com
+        - fastly.com
+        - amazon.com
+        - github.com
     scrape_interval: 1s
     scrape_timeout: 1s
     relabel_configs:
@@ -26,6 +31,28 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: host.docker.internal:9115
+  - job_name: 'blackbox-dns'
+    metrics_path: /probe
+    params:
+      module: [dns]
+    static_configs:
+      - targets:
+        - google.com
+        - one.one.one.one
+        - akamai.com
+        - fastly.com
+        - amazon.com
+        - github.com
+    scrape_interval: 10m
+    scrape_timeout: 10m
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: host.docker.internal:9115
+
 
 remote_write:
   - url: INSERT_URL
