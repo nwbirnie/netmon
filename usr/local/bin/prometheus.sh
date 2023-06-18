@@ -1,6 +1,7 @@
 #!/bin/bash
 docker run \
   --rm \
+  --name prometheus \
   -p 9090:9090 \
   -v /usr/local/share/netmon/prometheus.yml:/etc/prometheus/prometheus.yml \
   -v /var/prometheus/data:/prometheus \
