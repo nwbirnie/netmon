@@ -12,10 +12,11 @@ export grafana_credential grafana_url grafana_user
 cat <<EOF | sudo bash
 set -euox pipefail
 cp -r usr/* /usr
-cp -r etc/* /etc
+cp config/systemd/* /etc/systemd/system
 mkdir -p /var/prometheus/secret
 mkdir -p /var/prometheus/data
 chown nobody:nogroup -R /var/prometheus
+chmod 755 -R /var/prometheus
 
 useradd -s /usr/sbin/nologin netmon || true
 usermod -G docker netmon || true
@@ -23,10 +24,6 @@ usermod -G docker netmon || true
 echo "${grafana_credential}" > /var/prometheus/secret/grafana.credential
 sed "s/INSERT_USER/${grafana_user}/" -i /usr/local/share/netmon/prometheus.yml
 sed "s,INSERT_URL,${grafana_url}," -i /usr/local/share/netmon/prometheus.yml
-systemctl enable blackbox.service
-systemctl enable fastcom.service
-systemctl enable prometheus.service
-systemctl restart blackbox.service
-systemctl restart fastcom.service
-systemctl restart prometheus.service
+systemctl enable blackbox.service fastcom.service prometheus.service
+systemctl restart blackbox.service fastcom.service prometheus.service
 EOF
