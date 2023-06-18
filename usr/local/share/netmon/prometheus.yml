@@ -19,9 +19,6 @@ scrape_configs:
         - google.com
         - one.one.one.one
         - akamai.com
-        - fastly.com
-        - amazon.com
-        - github.com
     scrape_interval: 1s
     scrape_timeout: 1s
     relabel_configs:
@@ -40,9 +37,6 @@ scrape_configs:
         - google.com
         - one.one.one.one
         - akamai.com
-        - fastly.com
-        - amazon.com
-        - github.com
     scrape_interval: 10m
     scrape_timeout: 10m
     relabel_configs:
@@ -52,7 +46,6 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: host.docker.internal:9115
-
 
 remote_write:
   - url: INSERT_URL

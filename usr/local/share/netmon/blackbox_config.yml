@@ -6,3 +6,9 @@ modules:
       preferred_ip_protocol: ip4
       ip_protocol_fallback: false
       ttl: 64
+  dns:
+    prober: dns
+    timeout: 1s
+    dns:
+      query_name: A_record
+      query_type: A
