@@ -15,9 +15,7 @@ cp -r usr/* /usr
 cp -r etc/* /etc
 mkdir -p /var/prometheus/secret
 mkdir -p /var/prometheus/data
-mkdir -p /var/log/netmon
-chmod a+w -R /var/prometheus/data
-chmod a+w -R /var/log/netmon
+chown nobody:nogroup -R /var/prometheus
 
 useradd -s /usr/sbin/nologin netmon || true
 usermod -G docker netmon || true
