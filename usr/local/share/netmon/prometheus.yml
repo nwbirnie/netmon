@@ -37,8 +37,8 @@ scrape_configs:
         - google.com
         - one.one.one.one
         - akamai.com
-    scrape_interval: 10m
-    scrape_timeout: 10m
+    scrape_interval: 1m
+    scrape_timeout: 1m
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
